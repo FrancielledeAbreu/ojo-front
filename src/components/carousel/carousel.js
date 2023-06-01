@@ -19,7 +19,7 @@ const Carousel = ({ data }) => {
     const nextIndex = startIndex + 3;
     setStartIndex(nextIndex >= data.length ? 0 : nextIndex);
   };
-  console.log("data", data);
+
   const visibleData = data.slice(startIndex, startIndex + 3);
 
   return (

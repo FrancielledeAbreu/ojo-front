@@ -5,21 +5,26 @@ import React, { useEffect } from "react";
 
 // //locals
 import Carousel from "../../components/carousel/carousel";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { filmRequest } from "../../redux/actions/services-request";
 
 const Home = () => {
   const dispatch = useDispatch();
   const film = useSelector((state) => state.serviceReducer.films);
+  const isLoading = useSelector((state) => state.serviceReducer.isLoading);
 
   useEffect(() => {
     dispatch(filmRequest());
-  }, []);
+  }, [dispatch]);
 
-  console.log("ssasaSASasaS", film);
   return (
     <>
       olá
-      {film.length > 0 && <Carousel data={film} />}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        film.length > 0 && <Carousel data={film} />
+      )}
     </>
   );
 };
