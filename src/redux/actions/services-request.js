@@ -1,4 +1,3 @@
-import axios from "axios";
 import api from "../../services";
 import { FILMS, LOADING_START, LOADING_END, PEOPLE } from "./type";
 
@@ -33,23 +32,49 @@ export const filmRequest = () => async (dispatch) => {
   }
 };
 
+// export const peopleRequest = () => async (dispatch) => {
+//   try {
+//     dispatch(loadingStart());
+
+//     const response = await axios.get("https://swapi.dev/api/people?page=1");
+//     const totalCharacters = response.data.count;
+//     const totalPages = Math.ceil(totalCharacters / 10); // 10 characters per page
+
+//     const characters = response.data.results;
+
+//     // Fetch data for remaining pages
+//     for (let page = 2; page <= totalPages; page++) {
+//       const nextPageResponse = await axios.get(
+//         `https://swapi.dev/api/people?page=${page}`
+//       );
+//       characters.push(...nextPageResponse.data.results);
+//     }
+
+//     dispatch(people(characters));
+//     dispatch(loadingEnd());
+//   } catch (error) {
+//     console.log(error);
+//     dispatch(loadingEnd());
+//   }
+// };
+
 export const peopleRequest = () => async (dispatch) => {
   try {
     dispatch(loadingStart());
 
-    const response = await axios.get("https://swapi.dev/api/people?page=1");
-    const totalCharacters = response.data.count;
-    const totalPages = Math.ceil(totalCharacters / 10); // 10 characters per page
+    const characters = [];
 
-    const characters = response.data.results;
+    const fetchCharacters = async (page) => {
+      const response = await api.get(`/people?page=${page}`);
+      characters.push(...response.data.results);
 
-    // Fetch data for remaining pages
-    for (let page = 2; page <= totalPages; page++) {
-      const nextPageResponse = await axios.get(
-        `https://swapi.dev/api/people?page=${page}`
-      );
-      characters.push(...nextPageResponse.data.results);
-    }
+      if (response.data.next) {
+        const nextPage = response.data.next.split("=")[1];
+        await fetchCharacters(nextPage);
+      }
+    };
+
+    await fetchCharacters(1);
 
     dispatch(people(characters));
     dispatch(loadingEnd());
