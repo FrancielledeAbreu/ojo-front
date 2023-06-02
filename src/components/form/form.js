@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 //locals
 import { emailIsValid } from "../../utils/validators";
 import {
+  Button,
   Container,
   ContainerInput,
   ContainerText,
@@ -91,7 +92,7 @@ const ReviewForm = () => {
           ></Textarea>
         </ContainerText>
       </Container>
-      <button type="submit">Review</button>
+      <Button type="submit">Publish</Button>
     </Main>
   );
 };

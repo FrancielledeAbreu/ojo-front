@@ -39,3 +39,8 @@ export const Textarea = styled.textarea`
   width: 100%;
   height: 250px;
 `;
+
+export const Button = styled.button`
+  background-color: #00ff00;
+  border-radius: 4px;
+`;

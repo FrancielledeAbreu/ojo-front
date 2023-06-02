@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-// //style
+//style
+import {
+  Container,
+  Description,
+  TypographyContainer,
+} from "./movieDetails.style";
 
 //locals
 import api from "../../services";
 import Header from "../../components/header/header";
 import Typography from "../../components/typography/typography";
 import ReviewForm from "../../components/form/form";
+import { imageMapping } from "../../utils/images";
+import { Image } from "../../components/card/card.style";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -27,19 +34,27 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [id]);
 
-  console.log(movieDetails);
-
   return (
     <>
       <Header />
       {movieDetails && (
         <>
-          <Typography text={movieDetails.title} />
-          <h4>Descrição</h4>
-          <div>{movieDetails.opening_crawl}</div>
+          <TypographyContainer>
+            <Typography text={movieDetails.title} />
+          </TypographyContainer>
+          <Container>
+            <Description>
+              <h4>Descrição</h4>
+              <div>{movieDetails.opening_crawl}</div>
+            </Description>
+            <Image src={imageMapping[movieDetails.episode_id]} />
+          </Container>
         </>
       )}
-      <Typography text={"Write a Review"} />
+      <TypographyContainer>
+        <Typography text={"Write a Review"} />
+      </TypographyContainer>
+
       <ReviewForm />
     </>
   );
