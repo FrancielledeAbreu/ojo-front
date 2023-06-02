@@ -35,7 +35,7 @@ const Carousel = ({ data, type, label1, label2 }) => {
         ))}
       </Container>
 
-      <Button onClick={handleNext}>
+      <Button onClick={handleNext} data-testid="next-button">
         <FaArrowRight size={24} color="#ffffff" />
       </Button>
     </Main>

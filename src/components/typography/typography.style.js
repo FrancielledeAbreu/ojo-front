@@ -9,11 +9,11 @@ export const StyledWordWithLines = styled.div`
 `;
 
 export const Line = styled.span`
-  flex: 1;
+  flex-grow: 1;
   height: 3px;
   background-color: #000;
 `;
 
 export const Word = styled.span`
-  padding: 0 20px;
+  padding: 0 10px;
 `;

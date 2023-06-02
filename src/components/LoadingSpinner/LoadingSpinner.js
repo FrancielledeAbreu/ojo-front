@@ -5,8 +5,8 @@ import { Container, Spinner } from "./loadingSpinner.style";
 
 const LoadingSpinner = () => {
   return (
-    <Container>
-      <Spinner />
+    <Container data-testid="loading-spinner-container">
+      <Spinner data-testid="loading-spinner-spinner" />
     </Container>
   );
 };

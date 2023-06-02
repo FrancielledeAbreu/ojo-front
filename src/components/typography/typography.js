@@ -3,7 +3,7 @@ import { Line, StyledWordWithLines, Word } from "./typography.style";
 
 const Typography = ({ text }) => {
   return (
-    <StyledWordWithLines>
+    <StyledWordWithLines data-testid="typography">
       <Line />
       <Word>{text}</Word>
       <Line />
