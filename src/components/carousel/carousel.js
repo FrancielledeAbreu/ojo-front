@@ -1,6 +1,5 @@
+// carousel.jsx
 import React, { useState } from "react";
-
-//locals
 import Card from "../card/card";
 
 const imageMapping = {
@@ -12,7 +11,7 @@ const imageMapping = {
   6: require("../../assets/filmImages/episode_6.jpg"),
 };
 
-const Carousel = ({ data }) => {
+const Carousel = ({ data, type }) => {
   const [startIndex, setStartIndex] = useState(0);
 
   const handleNext = () => {
@@ -28,9 +27,10 @@ const Carousel = ({ data }) => {
         <Card
           key={index}
           image={imageMapping[item.episode_id]}
-          name={item.director}
+          name={type === "movie" ? item.director : item.name}
           title={item.title}
           date={item.created}
+          type={type}
         />
       ))}
       <button onClick={handleNext}>Next</button>

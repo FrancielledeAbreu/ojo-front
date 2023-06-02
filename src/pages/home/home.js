@@ -6,15 +6,20 @@ import React, { useEffect } from "react";
 // //locals
 import Carousel from "../../components/carousel/carousel";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { filmRequest } from "../../redux/actions/services-request";
+import {
+  filmRequest,
+  peopleRequest,
+} from "../../redux/actions/services-request";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const film = useSelector((state) => state.serviceReducer.films);
+  const films = useSelector((state) => state.serviceReducer.films);
+  const characters = useSelector((state) => state.serviceReducer.characters);
   const isLoading = useSelector((state) => state.serviceReducer.isLoading);
 
   useEffect(() => {
     dispatch(filmRequest());
+    dispatch(peopleRequest());
   }, [dispatch]);
 
   return (
@@ -23,7 +28,10 @@ const Home = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        film.length > 0 && <Carousel data={film} />
+        <>
+          {films.length > 0 && <Carousel data={films} type={"movie"} />}
+          {characters.length > 0 && <Carousel data={characters} />}
+        </>
       )}
     </>
   );

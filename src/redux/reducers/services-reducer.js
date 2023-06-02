@@ -1,9 +1,11 @@
-import { FILMS, LOADING_START, LOADING_END } from "../actions/type";
+import { FILMS, LOADING_START, LOADING_END, PEOPLE } from "../actions/type";
 
 const defaultState = {
   films: [],
+  characters: [],
   isLoading: false,
 };
+
 const serviceReducer = (state = defaultState, action) => {
   switch (action.type) {
     case LOADING_START:
@@ -20,6 +22,11 @@ const serviceReducer = (state = defaultState, action) => {
       return {
         ...state,
         films: [...action.data],
+      };
+    case PEOPLE:
+      return {
+        ...state,
+        characters: [...action.data],
       };
     default:
       return state;
