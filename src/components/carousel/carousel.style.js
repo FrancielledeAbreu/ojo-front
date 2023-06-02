@@ -9,8 +9,6 @@ export const Main = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
 `;
 
 export const Button = styled.button`
@@ -18,5 +16,5 @@ export const Button = styled.button`
   height: 56px;
   background: #000000;
   border-radius: 50%;
-  margin-left: -20%;
+  margin-left: 3%;
 `;

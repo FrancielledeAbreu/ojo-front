@@ -12,7 +12,7 @@ import {
 } from "../../redux/actions/services-request";
 import Header from "../../components/header/header";
 import Typography from "../../components/typography/typography";
-import { FlexContainer } from "./home.style";
+import { FlexContainer, Main } from "./home.style";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const Home = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <Main>
           <FlexContainer>
             <Typography text={"Movies"} />
           </FlexContainer>
@@ -53,7 +53,7 @@ const Home = () => {
               label2={"Altura"}
             />
           )}
-        </>
+        </Main>
       )}
     </>
   );

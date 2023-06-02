@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 //locals
 import Card from "../card/card";
@@ -22,16 +23,23 @@ const Carousel = ({ data, type, label1, label2 }) => {
     <Main>
       <Container>
         {visibleData.map((item, index) => (
-          <Card
-            key={index}
-            label1={label1}
-            label2={label2}
-            image={imageMapping[item.episode_id]}
-            description2={type === "movie" ? item.director : item.height}
-            title={type === "movie" ? item.title : item.name}
-            description1={type === "movie" ? item.created : item.birth_year}
-            type={type}
-          />
+          <div>
+            <Card
+              key={index}
+              label1={label1}
+              label2={label2}
+              image={imageMapping[item.episode_id]}
+              description2={type === "movie" ? item.director : item.height}
+              title={type === "movie" ? item.title : item.name}
+              description1={type === "movie" ? item.created : item.birth_year}
+              type={type}
+            />
+            {type === "movie" && (
+              <Link to={`/movie-details/${item.episode_id}`} target="blanck">
+                Details
+              </Link>
+            )}
+          </div>
         ))}
       </Container>
 

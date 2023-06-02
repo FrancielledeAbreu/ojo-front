@@ -6,7 +6,7 @@ import MovieDetails from "../pages/movieDetails/movieDetails";
 //apoio para rotas
 export const routes = [
   { path: "/", name: "Home", component: Home },
-  { path: "/movie-details", name: "MovieDetails", component: MovieDetails },
+  { path: "/movie-details/:id", name: "MovieDetails", component: MovieDetails },
 ];
 
 const Routes = () => {
