@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 
 //locals
 import Card from "../card/card";
 import { imageMapping } from "../../utils/images";
 
-const Carousel = ({ data, type }) => {
+//styles
+import { Button, Container, Main } from "./carousel.style";
+
+const Carousel = ({ data, type, label1, label2 }) => {
   const [startIndex, setStartIndex] = useState(0);
 
   const handleNext = () => {
@@ -15,19 +19,26 @@ const Carousel = ({ data, type }) => {
   const visibleData = data.slice(startIndex, startIndex + 3);
 
   return (
-    <div>
-      {visibleData.map((item, index) => (
-        <Card
-          key={index}
-          image={imageMapping[item.episode_id]}
-          name={type === "movie" ? item.director : item.name}
-          title={item.title}
-          date={item.created}
-          type={type}
-        />
-      ))}
-      <button onClick={handleNext}>Next</button>
-    </div>
+    <Main>
+      <Container>
+        {visibleData.map((item, index) => (
+          <Card
+            key={index}
+            label1={label1}
+            label2={label2}
+            image={imageMapping[item.episode_id]}
+            description2={type === "movie" ? item.director : item.height}
+            title={type === "movie" ? item.title : item.name}
+            description1={type === "movie" ? item.created : item.birth_year}
+            type={type}
+          />
+        ))}
+      </Container>
+
+      <Button onClick={handleNext}>
+        <FaArrowRight size={24} color="#ffffff" />
+      </Button>
+    </Main>
   );
 };
 

@@ -10,6 +10,7 @@ import {
   filmRequest,
   peopleRequest,
 } from "../../redux/actions/services-request";
+import Header from "../../components/header/header";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,13 +25,26 @@ const Home = () => {
 
   return (
     <>
-      olá
+      <Header />
       {isLoading ? (
         <LoadingSpinner />
       ) : (
         <>
-          {films.length > 0 && <Carousel data={films} type={"movie"} />}
-          {characters.length > 0 && <Carousel data={characters} />}
+          {films.length > 0 && (
+            <Carousel
+              data={films}
+              type={"movie"}
+              label1={"Data de Lançamento"}
+              label2={"Diretor"}
+            />
+          )}
+          {characters.length > 0 && (
+            <Carousel
+              data={characters}
+              label1={"Data de nascimento"}
+              label2={"Altura"}
+            />
+          )}
         </>
       )}
     </>
