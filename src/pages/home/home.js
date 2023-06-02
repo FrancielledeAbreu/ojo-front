@@ -11,6 +11,8 @@ import {
   peopleRequest,
 } from "../../redux/actions/services-request";
 import Header from "../../components/header/header";
+import Typography from "../../components/typography/typography";
+import { FlexContainer } from "./home.style";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,9 @@ const Home = () => {
         <LoadingSpinner />
       ) : (
         <>
+          <FlexContainer>
+            <Typography text={"Movies"} />
+          </FlexContainer>
           {films.length > 0 && (
             <Carousel
               data={films}
@@ -38,6 +43,9 @@ const Home = () => {
               label2={"Diretor"}
             />
           )}
+          <FlexContainer>
+            <Typography text={"Characters"} />
+          </FlexContainer>
           {characters.length > 0 && (
             <Carousel
               data={characters}

@@ -10,7 +10,7 @@ export const Main = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
+  width: 61%;
 `;
 
 export const Button = styled.button`
